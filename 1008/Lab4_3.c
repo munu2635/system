@@ -22,12 +22,12 @@ int main(int argc, char *argv[]){
 		ptr = strtok(NULL, "/");
 	}
 
-	printf("name : %s\n", name);
+//	printf("name : %s\n", name);
 	strcpy(input_loc, argv[1]);
 	loc = strtok(input_loc, name);
 
-	printf("argv[1] : %s\n", argv[1]);
-	printf("loc : %s\n",loc);
+//	printf("argv[1] : %s\n", argv[1]);
+//	printf("loc : %s\n", loc);
 	strcpy(mvloc, loc);
 	strcat(mvloc, argv[3]);
 	strcat(mvloc, "/");
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
 				strcat(loc_name, dent->d_name);
 				strcpy(mvloc_name, mvloc);
 				strcat(mvloc_name, dent->d_name);
-				printf("%s -- %s \n",loc_name, mvloc_name);
+//				printf("%s -- %s \n",loc_name, mvloc_name);
 				symlink(loc_name, mvloc_name);
 			}
 		}
