@@ -9,25 +9,29 @@
 
 int main(int argc, char *argv[]){
 	DIR *dp;
-	int i = -2;
-	char *loc, loc_name[BUFSIZ], mvloc[BUFSIZ], mvloc_name[BUFSIZ], *name;
+	int i = -2, k = 0 ;
+	char loc[BUFSIZ], mvloc[BUFSIZ], name[BUFSIZ], loc_name[BUFSIZ], mvloc_name[BUFSIZ];
 	char input_loc[BUFSIZ], *ptr;
 	struct dirent *dent;
 
 	strcpy(input_loc, argv[1]);
 	ptr = strtok(input_loc, "/");
+	strcat(loc, "/");
 
 	while(ptr != NULL){
-		name = ptr;
+		if( k++ != 0){
+			strcat(loc, name);
+			strcat(loc, "/");
+		}
+		strcpy(	name , ptr);
 		ptr = strtok(NULL, "/");
 	}
 
 //	printf("name : %s\n", name);
-	strcpy(input_loc, argv[1]);
-	loc = strtok(input_loc, name);
-
+//	strcpy(input_loc, argv[1]);
+//	loc = strtok(input_loc, name);
 //	printf("argv[1] : %s\n", argv[1]);
-//	printf("loc : %s\n", loc);
+	printf("loc : %s\n", loc);
 	strcpy(mvloc, loc);
 	strcat(mvloc, argv[3]);
 	strcat(mvloc, "/");
@@ -42,7 +46,7 @@ int main(int argc, char *argv[]){
 				strcat(loc_name, dent->d_name);
 				strcpy(mvloc_name, mvloc);
 				strcat(mvloc_name, dent->d_name);
-//				printf("%s -- %s \n",loc_name, mvloc_name);
+				printf("%s -- %s \n",loc_name, mvloc_name);
 				symlink(loc_name, mvloc_name);
 			}
 		}
